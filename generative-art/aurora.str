@@ -1,0 +1,39 @@
+// Ethereal Aurora
+stack(
+  // Shimmering high frequencies - like solar wind
+  note("<e5 g5 b5 d6 e6>")
+    .s("sine")
+    .attack(1)
+    .release(2)
+    .gain(sine.range(0.1, 0.3).slow(4))
+    .delay(0.7)
+    .delaytime(0.25)
+    .delayfeedback(0.6)
+    .slow(3),
+  
+  // Deep space drone
+  note("c2 eb2")
+    .s("sawtooth")
+    .lpf(180)
+    .gain(0.25)
+    .release(4)
+    .slow(8),
+  
+  // Wavering mid frequencies - aurora waves
+  note("<g3 bb3 d4 f4>")
+    .s("triangle")
+    .lpf(sine.range(500, 1500).slow(5))
+    .gain(0.2)
+    .attack(0.5)
+    .release(1.5)
+    .slow(2),
+  
+  // Occasional bright sparkles
+  note("c6 e6 g6")
+    .s("square")
+    .lpf(4000)
+    .gain(perlin.range(0, 0.3))
+    .release(0.2)
+    .degradeBy(0.6)
+    .fast(2)
+)

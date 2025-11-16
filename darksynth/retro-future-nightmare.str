@@ -1,0 +1,46 @@
+stack(
+  // Dark pulsing bassline
+  note("<c1 c1 [c1 d#1] c1>")
+    .sound("sawtooth")
+    .lpf(sine.range(200, 400).slow(4))
+    .lpq(10)
+    .gain(0.8)
+    .room(0.5)
+    .distort(0.4),
+  
+  // Arpeggio synth lead
+  note("<[c4 d#4 g4 a#4]*4>")
+    .sound("square")
+    .delay(0.5)
+    .delaytime(0.125)
+    .delayfeedback(0.4)
+    .lpf(2000)
+    .gain(0.3)
+    .room(0.7),
+  
+  // Rhythmic stabs
+  note("<c3!3 d#3>*2")
+    .sound("sawtooth")
+    .attack(0.001)
+    .decay(0.1)
+    .sustain(0)
+    .release(0.1)
+    .lpf(1200)
+    .gain(0.4)
+    .distort(0.3),
+  
+  // Kick drum
+  s("bd:3*4")
+    .gain(1.2)
+    .distort(0.2),
+  
+  // Snare on 2 and 4
+  s("~ sd:2 ~ sd:2")
+    .gain(0.7)
+    .room(0.3),
+  
+  // Hi-hats
+  s("hh:7*8")
+    .gain(0.3)
+    .pan(sine.slow(4))
+).slow(1.5)

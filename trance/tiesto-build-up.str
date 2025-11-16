@@ -1,0 +1,21 @@
+setcps(0.57)
+
+// White noise riser
+$: s("wind").lpf(sine.range(200, 8000).slow(16)).gain(0.5)
+
+// Increasing snare rolls
+$: s("~ ~ ~ sn:2*<1 2 4 8>").gain(0.6)
+
+// Filter sweep on the bassline
+$: note("a1*16")
+  .s("sawtooth")
+  .lpf(sine.range(100, 4000).slow(8))
+  .lpq(20)
+  .gain(0.5)
+
+// Rising pitch on stabs
+$: note("<a3 b3 c4 d4 e4 f4 g4 a4>")
+  .s("square")
+  .gain(0.4)
+  .delay(0.3)
+  .slow(2)

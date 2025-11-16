@@ -1,0 +1,30 @@
+// Helpers and music from switch angel
+
+register('o', (orbit, pat) => pat.orbit(orbit))
+
+// lpf between 0 and 1
+register('rlpf', (x, pat) => { return pat.lpf(pure(x).mul(12).pow(4)) })
+
+// tb303 style filter envelope control between 0 & 1 values for useful range
+register('acidenv', (x, pat) => pat.rlpf(.25).lpenv(x * 9).lps(.2).lpd(.15))
+
+_$: n("<0 4 0 9 7>*16".add("<7 _ _ 6 5 _ _ 6>*2")).scale("g:minor").trans(-12)
+  .o(3).s("sawtooth").acidenv(slider(0.636))
+  .delay(.4)
+  ._pianoroll()
+$: n("<7 _ _ 6 5  <5 3> <6 4>>*2").scale("g:minor").trans(-24)
+  .detune(rand)
+  .o(4).s("supersaw").acidenv(slider(1))
+  ._pianoroll()
+  
+_$: s("white!4").att(.4).o(6)
+
+_$: s("clap:9!4").o(8)
+
+_$: s("sd:1/2").fit().o(5)
+
+_$: s("sd:2!4")
+  .duck("3:4:5:6")
+  .duckdepth(.8)
+  .duckattack(.16)
+  ._scope()

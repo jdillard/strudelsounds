@@ -1,0 +1,65 @@
+// Skiing and Snowboarding on Fresh Powder
+stack(
+  // Constant wind across the mountain
+  sound("white")
+    .hpf(800)
+    .lpf(sine.range(2000, 4000).slow(6))
+    .gain(0.18)
+    .room(0.7)
+    .size(0.8),
+  
+  // Ski carving sounds - parallel tracks
+  sound("~ hh hh ~ hh hh ~ hh")
+    .lpf(3000)
+    .hpf(1000)
+    .gain(perlin.range(0.15, 0.3))
+    .release(0.15)
+    .pan(sine.range(0.3, 0.7).slow(4)),
+  
+  // Snowboarder carving - longer, swooping sounds
+  sound("~ ~ sd ~")
+    .lpf(2000)
+    .hpf(500)
+    .gain(0.25)
+    .release(0.5)
+    .pan(saw.range(0.2, 0.8).slow(3))
+    .degradeBy(0.3)
+    .slow(1.5),
+  
+  // Powder spray - quick bursts
+  sound("white")
+    .lpf(5000)
+    .hpf(2000)
+    .gain(perlin.range(0, 0.2))
+    .release(0.1)
+    .fast(4)
+    .degradeBy(0.7),
+  
+  // Occasional edge catch or turn
+  sound("~ ~ ~ cp")
+    .n(sine.range(40, 60).segment(8))
+    .lpf(1500)
+    .gain(0.2)
+    .release(0.2)
+    .degradeBy(0.6)
+    .slow(2),
+  
+  // Deep snow bass - weighted presence
+  note("c2 ~ ~ ~")
+    .s("sawtooth")
+    .lpf(200)
+    .gain(0.15)
+    .release(1)
+    .degradeBy(0.5)
+    .slow(3),
+  
+  // Crisp mountain air ambience - bright sparkle
+  note("<e5 g5 b5>")
+    .s("sine")
+    .attack(0.5)
+    .release(1)
+    .gain(0.08)
+    .delay(0.7)
+    .delayfeedback(0.5)
+    .slow(8)
+)

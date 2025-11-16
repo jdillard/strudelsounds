@@ -1,0 +1,49 @@
+// Bioluminescent Ocean Depths
+stack(
+  // Deep ocean ambience - slow moving bass
+  note("c1 c1 eb1 c1")
+    .s("sawtooth")
+    .lpf(150)
+    .gain(0.3)
+    .release(4)
+    .slow(8),
+  
+  // Ethereal pad - like water pressure
+  note("<c3 eb3 g3 bb3>")
+    .s("triangle")
+    .lpf(sine.range(800, 2000).slow(6))
+    .delay(0.8)
+    .delaytime(0.4)
+    .delayfeedback(0.7)
+    .attack(2)
+    .release(3)
+    .gain(0.25)
+    .slow(4),
+  
+  // Particle "pings" - like sonar or bioluminescent flashes
+  note("c5 e5 g5 b5 c6")
+    .s("sine")
+    .attack(0.01)
+    .release(0.3)
+    .gain(perlin.range(0, 0.4))
+    .delay(0.6)
+    .delaytime(0.15)
+    .sometimes(x => x.fast(2))
+    .slow(1.5),
+  
+  // Occasional deep whale-like tones
+  note("c2")
+    .s("sawtooth")
+    .lpf(300)
+    .gain(0.4)
+    .attack(1)
+    .release(4)
+    .degradeBy(0.7)
+    .slow(6),
+  
+  // Subtle water movement - white noise filtered
+  sound("white")
+    .lpf(sine.range(200, 600).slow(8))
+    .hpf(100)
+    .gain(0.15)
+)

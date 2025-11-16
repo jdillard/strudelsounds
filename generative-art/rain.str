@@ -1,0 +1,35 @@
+// Rainy Night Atmosphere
+stack(
+  // Gentle rain texture
+  sound("white")
+    .hpf(2000)
+    .lpf(8000)
+    .gain(0.2)
+    .room(0.9)
+    .size(0.8),
+  
+  // Individual raindrops
+  sound("~ cp ~ cp*<1 2 3>")
+    .s("sine")
+    .n(sine.range(60, 90).segment(128))
+    .gain(perlin.range(0.1, 0.3))
+    .release(0.05)
+    .delay(0.3)
+    .delayfeedback(0.2),
+  
+  // Deep puddle resonance
+  note("c2")
+    .s("sine")
+    .gain(0.15)
+    .release(2)
+    .degradeBy(0.8)
+    .slow(3),
+  
+  // Distant thunder rumble
+  sound("bd")
+    .lpf(200)
+    .gain(1.3)
+    .release(5)
+    .degradeBy(0.85)
+    .slow(16)
+)
